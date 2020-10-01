@@ -34,7 +34,7 @@
 
     - name: Set volume information
       set_fact:
-        volume_query: "Volume[*].{name: name, status: status}"
+        volume_query: "Volume[*].{name: name, status: status, capacity: capacity}"
 
     - name: Filter volume list
       set_fact:
