@@ -39,3 +39,7 @@
     - name: Filter image list
       set_fact:
         host_info: "{{ svc_info_host | json_query(host_query) }}"
+
+    - name: Show host information
+      debug:
+        msg: "{{ host_info }}"
