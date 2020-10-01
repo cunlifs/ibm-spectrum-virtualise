@@ -1,5 +1,5 @@
 ---
-- name: Show the volume information from the IBM Spectrum Virtualize
+- name: Show the host information from the IBM Spectrum Virtualize
   collections:
     - ibm.spectrum_virtualize
   gather_facts: no
@@ -18,17 +18,24 @@
   tasks:
     - name: Gather volume info from storage
       ibm_svc_info:
-        clustername: "{{ svc_cluster_name }}" 
-        username: "{{ svc_user_name }}" 
+        clustername: "{{ svc_cluster_name }}"
+        username: "{{ svc_user_name }}"
         password: "{{ svc_user_passwd }}"
         log_path: /tmp/playbook.debug
         name: gather_info
         state: info
-        gather_subset: vol
-      register: svc_info_vol
+        gather_subset: host
+      register: svc_info_host
 
-    - debug:
-        msg: "{{ svc_info_vol }}"
+    - name: Output information in verbosity mode
+      debug:
+        msg: "{{ svc_info_host }}"
+        verbosity: 1
 
-    - local_action: 
-        copy content={{ svc_info_vol }} dest=./svc_info_vol.info
+    - name: Set OS Distro search for ALL parameters
+      set_fact:
+        host_query: "Host[*].{name: name, status: status}"
+
+    - name: Filter image list
+      set_fact:
+        host_info: "{{ svc_info_host | json_query(host_query) }}"
