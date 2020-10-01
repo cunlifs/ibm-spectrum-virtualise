@@ -1,0 +1,34 @@
+---
+- name: Show the volume information from the IBM Spectrum Virtualize
+  collections:
+    - ibm.spectrum_virtualize
+  gather_facts: no
+  connection: local
+  hosts: localhost
+  vars:
+    svc_cluster_name: IBM-FS9100
+    svc_user_name: scunliffe
+
+  vars_prompt:
+    - name: "svc_user_passwd"
+      prompt: "Enter password for {{ svc_user_name }} on SVC {{ svc_cluster_name }}"
+      private: yes
+      confirm: no
+
+  tasks:
+    - name: Gather volume info from storage
+      ibm_svc_info:
+        clustername: "{{ svc_cluster_name }}" 
+        username: "{{ svc_user_name }}" 
+        password: "{{ svc_user_passwd }}"
+        log_path: /tmp/playbook.debug
+        name: gather_info
+        state: info
+        gather_subset: vol
+      register: svc_info_vol
+
+    - debug:
+        msg: "{{ svc_info_vol }}"
+
+    - local_action: 
+        copy content={{ svc_info_vol }} dest=./svc_info_vol.info
