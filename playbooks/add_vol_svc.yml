@@ -27,7 +27,7 @@
         state: present
         name: "{{ svc_new_vol_name }}"
         size: "{{ svc_new_vol_size }}"
-        mdiskgr: Pool0_R6
+        mdiskgrp: Pool0_R6
         unit: gb
         rsize: '20%'
         autoexpand: true
