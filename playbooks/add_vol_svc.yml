@@ -8,8 +8,8 @@
   vars:
     svc_cluster_name: IBM-FS9100
     svc_user_name: scunliffe
-    svc_new_vol_name: test-vol1
-    svc_new_vol_size: '10'
+  #  svc_new_vol_name: test-vol1
+  #  svc_new_vol_size: '10'
 
   vars_prompt:
     - name: "svc_user_passwd"
