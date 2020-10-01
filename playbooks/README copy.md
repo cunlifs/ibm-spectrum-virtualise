@@ -1,1 +1,0 @@
-# ibm-spectrum-virtualise
