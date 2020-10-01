@@ -30,11 +30,11 @@
     - name: Output information in verbosity mode
       debug:
         msg: "{{ svc_info_vol }}"
-        verbosity: 1
+        verbosity: 0
 
     - name: Set volume information
       set_fact:
-        volume_query: "volume[*].{name: name, status: status}"
+        volume_query: "Volume[*].{name: name, status: status}"
 
     - name: Filter image list
       set_fact:
