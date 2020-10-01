@@ -18,8 +18,8 @@
   tasks:
     - name: Gather volume info from storage
       ibm_svc_info:
-        clustername: "{{ svc_cluster_name }}" 
-        username: "{{ svc_user_name }}" 
+        clustername: "{{ svc_cluster_name }}"
+        username: "{{ svc_user_name }}"
         password: "{{ svc_user_passwd }}"
         log_path: /tmp/playbook.debug
         name: gather_info
@@ -27,8 +27,19 @@
         gather_subset: vol
       register: svc_info_vol
 
-    - debug:
+    - name: Output information in verbosity mode
+      debug:
         msg: "{{ svc_info_vol }}"
+        verbosity: 1
 
-    - local_action: 
-        copy content={{ svc_info_vol }} dest=./svc_info_vol.info
+    - name: Set volume information
+      set_fact:
+        volume_query: "volume[*].{name: name, status: status}"
+
+    - name: Filter image list
+      set_fact:
+        volume_info: "{{ svc_info_vol | json_query(volume_query) }}"
+
+    - name: Show volume information
+      debug:
+        msg: "{{ volume_info }}"
