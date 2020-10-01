@@ -19,7 +19,7 @@
 
   tasks:
     - name: Gather volume info from storage
-      ibm_svc_disk:
+      ibm_svc_vdisk:
         clustername: "{{ svc_cluster_name }}"
         username: "{{ svc_user_name }}"
         password: "{{ svc_user_passwd }}"
