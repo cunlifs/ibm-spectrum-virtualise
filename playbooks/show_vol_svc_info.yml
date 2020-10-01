@@ -36,7 +36,7 @@
       set_fact:
         volume_query: "Volume[*].{name: name, status: status}"
 
-    - name: Filter image list
+    - name: Filter volume list
       set_fact:
         volume_info: "{{ svc_info_vol | json_query(volume_query) }}"
 
