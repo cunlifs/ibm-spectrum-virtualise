@@ -1,0 +1,37 @@
+---
+- name: Create and map an SVC volume to a client
+  collections:
+    - ibm.spectrum_virtualize
+  gather_facts: no
+  connection: local
+  hosts: localhost
+  vars:
+    svc_cluster_name: IBM-FS9100
+    svc_user_name: scunliffe
+
+  vars_prompt:
+    - name: "svc_user_passwd"
+      prompt: "Enter password for {{ svc_user_name }} on SVC {{ svc_cluster_name }}"
+      private: yes
+      confirm: no
+    - name: "svc_new_vol_name"
+      prompt: "Enter name of new volume to create"
+      private: no
+      confirm: no
+    - name: "svc_new_vol_size"
+      prompt: "Enter size (GB) of new volume {{ svc_new_vol_name }}"
+      private: no
+      confirm: no
+    - name: "svc_client_name"
+      prompt: "Enter name of SVC client to attach disk {{ svc_new_vol_name }} too"
+      private: no
+      confirm: no
+
+  tasks:
+    - name: Create new vdisk
+      import_role:
+        name: add_svc_volume
+
+    - name: Attach new vdisk to client
+      import_role:
+        name: map_svc_volume
