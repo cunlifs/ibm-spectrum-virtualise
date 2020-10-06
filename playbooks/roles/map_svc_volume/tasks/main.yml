@@ -1,0 +1,13 @@
+---
+# tasks file for map_svc_volume
+- name: map volume to host
+  ibm_svc_vol_map:
+    clustername: "{{clustername}}"
+    domain: "{{domain}}"
+    username: "{{username}}"
+    password: "{{password}}"
+    log_path: /tmp/playbook.debug
+    volname: "{{ svc_new_vol_name }}"
+    host: "{{ svc_client_name }}"
+    state: present
+  register: mapping_info
