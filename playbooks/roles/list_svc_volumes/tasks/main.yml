@@ -13,7 +13,7 @@
 - name: Output information in verbosity mode
   debug:
     msg: "{{ svc_info_vol }}"
-  verbosity: 0
+  verbosity: 1
 
 - name: Set volume information
   set_fact:
