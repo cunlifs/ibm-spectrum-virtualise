@@ -1,0 +1,21 @@
+---
+# tasks file for add_svc_volume
+- name: Create new volume info from storage
+  ibm.spectrum_virtualize.ibm_svc_vdisk:
+    clustername: "{{ svc_cluster_name }}"
+    username: "{{ svc_user_name }}"
+    password: "{{ svc_user_passwd }}"
+    log_path: /tmp/playbook.debug
+    state: present
+    name: "{{ svc_new_vol_name }}"
+    size: "{{ svc_new_vol_size }}"
+    mdiskgrp: Primary_Pool
+    unit: gb
+    rsize: '20%'
+    autoexpand: true
+  register: svc_new_vol_create
+
+- name: Output information in verbosity mode
+  debug:
+    msg: "{{ svc_new_vol_create }}"
+    verbosity: 0

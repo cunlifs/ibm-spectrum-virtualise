@@ -18,33 +18,6 @@
       confirm: no
 
   tasks:
-    - name: Gather volume info from storage
-      ibm_svc_vdisk:
-        clustername: "{{ svc_cluster_name }}"
-        username: "{{ svc_user_name }}"
-        password: "{{ svc_user_passwd }}"
-        log_path: /tmp/playbook.debug
-        state: present
-        name: "{{ svc_new_vol_name }}"
-        size: "{{ svc_new_vol_size }}"
-        mdiskgrp: Primary_Pool
-        unit: gb
-        rsize: '20%'
-        autoexpand: true
-      register: svc_new_vol_create
-
-    - name: Output information in verbosity mode
-      debug:
-        msg: "{{ svc_new_vol_create }}"
-        verbosity: 0
-
-#    - name: Set volume information
-#     set_fact:
-#        volume_query: "Volume[*].{name: name, status: status, capacity: capacity}"
-
-#    - name: Filter volume list      set_fact:
-#        volume_info: "{{ svc_info_vol | json_query(volume_query) }}"
-
-#    - name: Show volume information
-#      debug:
-#        msg: "{{ volume_info }}"
+    - name: Create new vdisk
+      import_role:
+        name: add_svc_volume
