@@ -15,7 +15,7 @@
     msg: "{{ svc_info_host }}"
     verbosity: 1
 
-- name: Set OS Distro search for ALL parameters
+- name: Show host information
   set_fact:
     host_query: "Host[*].{name: name, status: status}"
 
@@ -26,3 +26,17 @@
 - name: Show host information
   debug:
     msg: "{{ host_info }}"
+
+- name: Output host list
+  set_fact:
+    VM_debug: "Seq: {{ Host_Seq }}, Name: {{ item.name }}, Status: {{ item.status }}"
+  with_items: "{{Host_Heading}},{{ host_info }}"
+  loop_control:
+    index_var: Host_Seq
+    label: "{% if Host_Seq == 0 %}Seq{% else %}{{ Host_Seq|center(width=3) }}{% endif %} | {{ item.name|center(width=35) }}|{{ item.status|center(width=15) }} "
+  register: Host_Array
+
+- name: Debug - Output Host List
+    debug:
+      var: Host_Array.results
+      verbosity: 1
