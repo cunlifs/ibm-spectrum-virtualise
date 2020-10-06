@@ -1,0 +1,4 @@
+---
+# tasks file for show_client_information
+- name: Show client show client information
+  setup:
