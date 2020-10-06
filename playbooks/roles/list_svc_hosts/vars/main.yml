@@ -1,2 +1,6 @@
 ---
 # vars file for list_svc_hosts
+Host_Array: []
+Host_Heading:
+  name: "- Host_Name -"
+  status: "- Status -"
