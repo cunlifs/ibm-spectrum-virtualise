@@ -37,6 +37,6 @@
   register: Host_Array
 
 - name: Debug - Output Host List
-    debug:
-      var: Host_Array.results
-      verbosity: 1
+  debug:
+    var: Host_Array.results
+    verbosity: 1
