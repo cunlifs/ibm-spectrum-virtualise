@@ -1,5 +1,5 @@
 ---
-- name: Gather volume info from storage
+- name: Gather host info from storage
   ibm.spectrum_virtualize.ibm_svc_info:
     clustername: "{{ svc_cluster_name }}"
     username: "{{ svc_user_name }}"
