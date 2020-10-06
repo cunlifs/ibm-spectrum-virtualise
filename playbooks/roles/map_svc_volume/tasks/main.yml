@@ -1,7 +1,7 @@
 ---
 # tasks file for map_svc_volume
 - name: map volume to host
-  ibm_svc_vol_map:
+  ibm.spectrum_virtualize.ibm_svc_vol_map:
     clustername: "{{clustername}}"
     domain: "{{domain}}"
     username: "{{username}}"
