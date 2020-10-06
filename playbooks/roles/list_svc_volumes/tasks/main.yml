@@ -1,7 +1,7 @@
 ---
 - name: Gather volume info from storage
-  ibm_svc_info:
-    ibm.spectrum_virtualize.clustername: "{{ svc_cluster_name }}"
+  ibm.spectrum_virtualize.ibm_svc_info:
+    clustername: "{{ svc_cluster_name }}"
     username: "{{ svc_user_name }}"
     password: "{{ svc_user_passwd }}"
     log_path: /tmp/playbook.debug
