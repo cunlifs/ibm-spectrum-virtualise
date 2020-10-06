@@ -6,4 +6,4 @@
 
 - name: show all information
   debug:
-    msg: {{ client_info }}
+    msg: "{{ client_info }}"
