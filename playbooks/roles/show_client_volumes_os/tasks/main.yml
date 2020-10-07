@@ -1,0 +1,10 @@
+---
+# tasks file for show_client_volumes_os
+- name: Get volumes and size via operating system
+  shell: |
+    multipath -l |awk '/mpath/{printf "%s ",$1; getline ; print}' |sed "s/\([0-9]G\).*/\1/g"
+  register: client_disks
+
+- name: Show disks
+  debug:
+    msg: "{{client_disks}}"
