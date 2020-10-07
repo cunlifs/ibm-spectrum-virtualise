@@ -8,7 +8,7 @@
     log_path: /tmp/playbook.debug
   register: svc_info_vol
 
-- name: Output information in verbosity mode
+- name: Output information about clients disks in verbosity mode
   debug:
     msg: "{{ svc_info_vol }}"
 
