@@ -1,0 +1,6 @@
+---
+# tasks file for scan_client_scsi
+- name: Running scsi rescan
+  shell: |
+    /usr/bin/rescan-scsi-bus.sh
+  register: scan_results
