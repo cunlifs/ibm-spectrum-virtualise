@@ -22,7 +22,7 @@
 
 - name: Set volume information
   set_fact:
-    client_volume_query: "msg[*].{'\"name\"': name}"
+    client_volume_query: "msg[*].{name: name}"
 
 - name: Filter volume list
   set_fact:
