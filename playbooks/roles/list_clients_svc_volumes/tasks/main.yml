@@ -12,17 +12,17 @@
   debug:
     msg: "{{ client_svc_info_vol.stdout_lines }}"
 
-#- name: Set volume information
-#  set_fact:
-#    client_volume_query: "Volume[*].{name: name, status: status, capacity: capacity}"
+- name: Set volume information
+  set_fact:
+    client_volume_query: "msg[*].{name: name}"
 
-#- name: Filter volume list
-#  set_fact:
-#    volume_info: "{{ svc_info_vol | json_query(volume_query) }}"
+- name: Filter volume list
+  set_fact:
+    client_volume_info: "{{ client_svc_info_vol | json_query(client_volume_query) }}"
 
-#- name: Show volume information
-#  debug:
-#    msg: "{{ volume_info }}"
+- name: Show volume information
+  debug:
+    msg: "{{ client_volume_info }}"
 
 #- name: Output volume list
 #  set_fact:
