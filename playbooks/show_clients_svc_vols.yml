@@ -1,5 +1,5 @@
 ---
-- name: Show the volume information from the IBM Spectrum Virtualize
+- name: Show the volume information from the IBM Spectrum Virtualize for a client
   collections:
     - ibm.spectrum_virtualize
   gather_facts: no
@@ -18,4 +18,4 @@
   tasks:
     - name: Gather Volume information
       import_role:
-        name: list_svc_volumes
+        name: list_clients_svc_volumes
