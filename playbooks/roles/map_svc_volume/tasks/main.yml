@@ -13,4 +13,4 @@
 
 - name: show mapping results
   debug:
-    msg: {{ mapping_info }}
+    msg: "{{ mapping_info }}"
