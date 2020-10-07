@@ -7,4 +7,4 @@
 
 - name: Show disks
   debug:
-    msg: "{{client_disks}}"
+    msg: "{{client_disks.stdout_lines}}"
