@@ -4,6 +4,7 @@
     clustername: "{{ svc_cluster_name }}"
     username: "{{ svc_user_name }}"
     password: "{{ svc_user_passwd }}"
+    object: "RHEL7-FC-DemoBox"
     log_path: /tmp/playbook.debug
     name: gather_info
     state: info
