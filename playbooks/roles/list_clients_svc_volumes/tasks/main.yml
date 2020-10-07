@@ -14,12 +14,12 @@
 
 - name: strip chars
   set_fact:
-    stripped_down: {{ client_svc_info_vol.stdout_lines | regex_replace('^\\/|\\/$', '') }}
+    stripped_down: {{ client_svc_info_vol.stdout_lines | regex_replace('\\/$', '') }}
 
 - name:
   debug:
     msg: "{{ stripped_down }}"
-        
+
 - name: Set volume information
   set_fact:
     client_volume_query: "msg[*].{name: name}"
