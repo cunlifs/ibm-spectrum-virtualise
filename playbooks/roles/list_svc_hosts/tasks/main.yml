@@ -13,7 +13,7 @@
 - name: Output information in verbosity mode
   debug:
     msg: "{{ svc_info_host }}"
-    verbosity: 1
+    verbosity: 0
 
 - name: Show host information
   set_fact:
