@@ -10,3 +10,7 @@
     host: "{{svc_client_name}}"
     state: present
   register: mapping_info
+
+- name: show mapping results
+  debug:
+    msg: {{ mapping_info }}
