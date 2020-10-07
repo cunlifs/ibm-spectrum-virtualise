@@ -1,0 +1,25 @@
+---
+- name: Delete SVC Volume
+  collections:
+    - ibm.spectrum_virtualize
+  gather_facts: no
+  connection: local
+  hosts: localhost
+  vars:
+    - svc_cluster_name: IBM-FS9100
+    - svc_user_name: jwilcock
+
+  vars_prompt:
+    - name: "svc_user_passwd"
+      prompt: "Enter password for {{ svc_user_name }} on SVC {{svc_cluster_name}}"
+      private: yes
+      confirm: no
+    - name: "svc_vol"
+      prompt: "Enter name of volume to delete"
+      private: yes
+      confirm: no
+
+  tasks:
+    - name: Delete Volume
+      import_role:
+        name: del_svc_volume
