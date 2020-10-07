@@ -1,0 +1,16 @@
+---
+# tasks file for del_svc_volume
+- name: Delete volume
+  ibm.spectrum_virtualize.ibm_svc_vdisk:
+    clustername: "{{ svc_cluster_name }}"
+    username: "{{ svc_user_name }}"
+    password: "{{ svc_user_passwd }}"
+    log_path: /tmp/playbook.debug
+    state: absent
+    name: "{{ svc_vol }}"
+    register: del_vol
+
+- name: Output information in verbosity mode
+  debug:
+    msg: "{{ del_vol }}"
+    verbosity: 0

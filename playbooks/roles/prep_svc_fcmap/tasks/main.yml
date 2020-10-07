@@ -1,0 +1,20 @@
+---
+# tasks file for prep_svc_fcmap
+- name: Prepare flashcopy mapping
+  ibm.spectrum_virtualize.ibm_svc_volume_snapshot:
+    clustername: "{{ svc_cluster_name }}"
+    username: "{{ svc_user_name }}"
+    password: "{{ svc_user_passwd }}"
+    log_path: /tmp/playbook.debug
+    state: prestart
+    name: "fcmap_{{ svc_src_vol }}"
+    volume: "{{ svc_src_vol }}"
+    snapshot: "{{ svc_src_vol }}_tgt"
+    restore: true
+    register: prep_fcmap
+
+- name: Output information in verbosity mode
+  debug:
+    msg: "{{ prep_fcmap }}"
+    verbosity: 0
+
