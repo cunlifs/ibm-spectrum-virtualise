@@ -1,14 +1,11 @@
 ---
 - name: Gather volume info from storage
-  ibm.spectrum_virtualize.ibm_svc_info:
+  ibm.spectrum_virtualize.ibm_svcinfo_command:
+    command: "svcinfo lshost RHEL7-FC-DemoBox"
     clustername: "{{ svc_cluster_name }}"
     username: "{{ svc_user_name }}"
     password: "{{ svc_user_passwd }}"
-    object: "RHEL7-FC-DemoBox"
     log_path: /tmp/playbook.debug
-    name: gather_info
-    state: info
-    gather_subset: vol
   register: svc_info_vol
 
 - name: Output information in verbosity mode
