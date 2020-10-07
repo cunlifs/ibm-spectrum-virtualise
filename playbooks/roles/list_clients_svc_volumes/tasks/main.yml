@@ -1,7 +1,7 @@
 ---
 - name: Gather volume info from storage
   ibm.spectrum_virtualize.ibm_svcinfo_command:
-    command: "svcinfo lshost RHEL7-FC-DemoBox"
+    command: "lshostvdiskmap"
     clustername: "{{ svc_cluster_name }}"
     username: "{{ svc_user_name }}"
     password: "{{ svc_user_passwd }}"
