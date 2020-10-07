@@ -1,5 +1,6 @@
 ---
 # vars file for list_svc_volumes
+stdout_callback: yaml
 Vol_Array: []
 Vol_Heading:
   name: "- Volume_Name -"
