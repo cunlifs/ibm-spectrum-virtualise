@@ -1,0 +1,7 @@
+---
+# vars file for list_svc_volumes
+Vol_Array: []
+Vol_Heading:
+  name: "- Volume_Name -"
+  status: "- Status -"
+  capacity: "- Capacity -"

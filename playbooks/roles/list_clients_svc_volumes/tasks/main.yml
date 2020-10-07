@@ -1,0 +1,41 @@
+---
+- name: Gather volume info from storage
+  ibm.spectrum_virtualize.ibm_svc_info:
+    clustername: "{{ svc_cluster_name }}"
+    username: "{{ svc_user_name }}"
+    password: "{{ svc_user_passwd }}"
+    log_path: /tmp/playbook.debug
+    name: gather_info
+    state: info
+    gather_subset: vol
+  register: svc_info_vol
+
+- name: Output information in verbosity mode
+  debug:
+    msg: "{{ svc_info_vol }}"
+
+- name: Set volume information
+  set_fact:
+    volume_query: "Volume[*].{name: name, status: status, capacity: capacity}"
+
+- name: Filter volume list
+  set_fact:
+    volume_info: "{{ svc_info_vol | json_query(volume_query) }}"
+
+- name: Show volume information
+  debug:
+    msg: "{{ volume_info }}"
+
+- name: Output volume list
+  set_fact:
+    VM_debug: "Seq: {{ Vol_Seq }}, Name: {{ item.name }}, Status: {{ item.status }}, Capacity: {{ item.capacity }}"
+  with_items: "{{Vol_Heading}},{{ volume_info }}"
+  loop_control:
+    index_var: Vol_Seq
+    label: "{% if Vol_Seq == 0 %}Seq{% else %}{{ Vol_Seq|center(width=3) }}{% endif %} | {{ item.name|center(width=35) }}|{{ item.status|center(width=15) }}|{{ item.capacity|center(width=20) }} "
+  register: Vol_Array
+
+- name: Debug - Output Volume List
+  debug:
+    var: Vol_Array.results
+    verbosity: 1
