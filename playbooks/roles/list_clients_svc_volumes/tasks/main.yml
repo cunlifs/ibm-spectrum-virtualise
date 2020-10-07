@@ -6,15 +6,15 @@
     username: "{{ svc_user_name }}"
     password: "{{ svc_user_passwd }}"
     log_path: /tmp/playbook.debug
-  register: svc_info_vol
+  register: client_svc_info_vol
 
 - name: Output information about clients disks in verbosity mode
   debug:
-    msg: "{{ svc_info_vol }}"
+    msg: "{{ client_svc_info_vol.stdout_lines }}"
 
 #- name: Set volume information
 #  set_fact:
-#    volume_query: "Volume[*].{name: name, status: status, capacity: capacity}"
+#    client_volume_query: "Volume[*].{name: name, status: status, capacity: capacity}"
 
 #- name: Filter volume list
 #  set_fact:
