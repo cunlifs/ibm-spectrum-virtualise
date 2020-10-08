@@ -20,7 +20,7 @@
       prompt: "Enter name of source volume of mapping to delete"
       private: yes
       confirm: no
-    - name: "client"
+    - name: "svc_client_name"
       prompt: "Enter name of host machine"
       private: yes
       confirm: no
