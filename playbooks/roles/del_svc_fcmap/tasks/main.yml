@@ -11,7 +11,7 @@
     volume: "{{ svc_src_vol }}"
     snapshot: "{{ svc_src_vol }}_tgt"
     force: true
-    register: del_fcmap
+  register: del_fcmap
 
 -name:
   debug:
