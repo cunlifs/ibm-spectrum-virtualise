@@ -3,8 +3,8 @@
 - name: unmap volume from host
   ibm.spectrum_virtualize.ibm_svc_vol_map:
     clustername: "{{ svc_cluster_name }}"
-    username: "{{ svc_username }}"
-    password: "{{ svc_password }}"
+    username: "{{ svc_user_name }}"
+    password: "{{ svc_user_passwd }}"
     log_path: /tmp/playbook.debug
     volname: "{{ svc_vol }}"
     host: "{{ svc_host }}"
