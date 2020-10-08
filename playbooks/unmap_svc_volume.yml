@@ -26,4 +26,4 @@
   tasks:
     - name: Unmap volume
       import_role:
-        name: del_svc_volume
+        name: unmap_svc_volume
