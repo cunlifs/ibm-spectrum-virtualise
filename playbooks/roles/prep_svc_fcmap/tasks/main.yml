@@ -11,7 +11,7 @@
     volume: "{{ svc_src_vol }}"
     snapshot: "{{ svc_src_vol }}_tgt"
     restore: true
-    register: prep_fcmap
+  register: prep_fcmap
 
 - name: Output information in verbosity mode
   debug:
