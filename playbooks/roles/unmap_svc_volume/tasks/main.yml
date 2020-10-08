@@ -9,7 +9,7 @@
     volname: "{{ svc_vol }}"
     host: "{{ svc_client_name }}"
     state: absent
-    register: unmap_vol
+  register: unmap_vol
 
 - name: Output information in verbosity mode
   debug:
