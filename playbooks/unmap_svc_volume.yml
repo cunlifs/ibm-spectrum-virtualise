@@ -14,7 +14,7 @@
       prompt: "Enter password for {{ svc_user_name }} on SVC {{svc_cluster_name}}"
       private: yes
       confirm: no
-    - name: "svc_host"
+    - name: "svc_client_name"
       prompt: "Enter name of host to unmap volume"
       private: yes
       confirm: no
