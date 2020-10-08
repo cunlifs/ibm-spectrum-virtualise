@@ -8,7 +8,7 @@
     log_path: /tmp/playbook.debug
     state: absent
     name: "{{ svc_vol }}"
-    register: del_vol
+  register: del_vol
 
 - name: Output information in verbosity mode
   debug:
