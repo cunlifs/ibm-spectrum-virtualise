@@ -13,7 +13,7 @@
     force: true
   register: del_fcmap
 
--name:
+- name:
   debug:
     msg: "{{ del_fcmap }}"
     verbosity: 0
