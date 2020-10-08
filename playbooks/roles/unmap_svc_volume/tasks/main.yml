@@ -1,15 +1,15 @@
 ---
 # tasks file for unmap_svc_volume
 - name: unmap volume from host
-  ibm_svc_vol_map:
+  ibm.spectrum_virtualize.ibm_svc_vol_map:
     clustername: "{{ svc_cluster_name }}"
     username: "{{ svc_username }}"
     password: "{{ svc_password }}"
     log_path: /tmp/playbook.debug
     volname: "{{ svc_vol }}"
-    host: "{{ svc_client_name }}"
+    host: "{{ svc_host }}"
     state: absent
-  register: unmap_vol
+    register: unmap_vol
 
 - name: Output information in verbosity mode
   debug:
