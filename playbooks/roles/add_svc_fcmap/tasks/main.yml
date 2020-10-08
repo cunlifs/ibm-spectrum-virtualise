@@ -1,0 +1,21 @@
+---
+# tasks file for add_svc_fcmap
+- name: Add svc flashcopy mapping
+  ibm.spectrum_virtualize.ibm_svc_volume_snapshot:
+    clustername: "{{ svc_cluster_name }}"
+    username: "{{ svc_user_name }}"
+    password: "{{ svc_user_passwd }}"
+    log_path: /tmp/playbook.debug
+    state: present
+    name: "fcmap_{{ svc_src_vol }}"
+    volume: "{{ svc_src_vol }}"
+    snapshot: "{{ svc_src_vol }}_tgt"
+    copyrate: 100
+    cleanrate: 100
+  register: add_fcmap
+
+- name: Output information in verbosity mode
+  debug:
+    msg: "{{ add_fcmap }}"
+    verbosity: 0
+    

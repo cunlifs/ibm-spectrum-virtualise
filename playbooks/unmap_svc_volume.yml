@@ -1,0 +1,29 @@
+---
+- name: Unmap SVC Volume
+  collections:
+    - ibm.spectrum_virtualize
+  gather_facts: no
+  connection: local
+  hosts: localhost
+  vars:
+    - svc_cluster_name: IBM-FS9100
+    - svc_user_name: jwilcock
+
+  vars_prompt:
+    - name: "svc_user_passwd"
+      prompt: "Enter password for {{ svc_user_name }} on SVC {{svc_cluster_name}}"
+      private: yes
+      confirm: no
+    - name: "svc_host"
+      prompt: "Enter name of host to unmap volume"
+      private: yes
+      confirm: no
+    - name: "svc_vol"
+      prompt: "Enter name of volume to unmap"
+      private: yes
+      confirm: no
+
+  tasks:
+    - name: Unmap volume
+      import_role:
+        name: del_svc_volume

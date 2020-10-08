@@ -1,0 +1,19 @@
+---
+# tasks file for del_svc_fcmap
+- name: Delete flashcopy mapping
+  ibm.spectrum_virtualize.ibm_svc_volume_snapshot:
+    clustername: "{{ svc_cluster_name }}"
+    username: "{{ svc_user_name }}"
+    password: "{{ svc_user_passwd }}"
+    log_path: /tmp/playbook.debug
+    state: absent    
+    name: "fcmap_{{ svc_src_vol }}"
+    volume: "{{ svc_src_vol }}"
+    snapshot: "{{ svc_src_vol }}_tgt"
+    force: true
+    register: del_fcmap
+
+-name:
+  debug:
+    msg: "{{ del_fcmap }}"
+    verbosity: 0
