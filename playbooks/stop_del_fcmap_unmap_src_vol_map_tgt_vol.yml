@@ -1,0 +1,40 @@
+---
+- name: Stop flashcopy unmap source map target to host
+  collections:
+    - ibm.spectrum_virtualize
+  gather_facts: no
+  connection: local
+  hosts: localhost
+  vars:
+    - svc_cluster_name: IBM-FS9100
+    - svc_user_name: jwilcock
+    - svc_vol: "{{ svc_src_vol }}"
+    - svc_new_vol_name: "{{ svc_src_vol }}_tgt"
+
+  vars_prompt:
+    - name: "svc_user_passwd"
+      prompt: "Enter password for {{ svc_user_name }} on SVC {{svc_cluster_name}}"
+      private: yes
+      confirm: no
+    - name: "svc_src_vol"
+      prompt: "Enter name of source volume of mapping to delete"
+      private: yes
+      confirm: no
+    - name: "client"
+      prompt: "Enter name of host machine"
+      private: yes
+      confirm: no
+
+  tasks:
+    - name: stop flashcopy mapping
+      import_role:
+        name: stop_svc_fcmap  
+    - name: delete flashcopy mapping
+      import_role:
+        name: del_svc_fcmap
+    - name: unmap svc volume
+      import_role:
+        name: unmap_svc_volume
+    - name: map svc volume
+      import_role:
+        name: map_svc_volume
