@@ -7,7 +7,7 @@
     password: "{{ svc_password }}"
     log_path: /tmp/playbook.debug
     volname: "{{ svc_vol }}"
-    host: "{{ svc_host }}"
+    host: "{{ svc_client_name }}"
     state: absent
   register: unmap_vol
 
