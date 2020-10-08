@@ -1,0 +1,33 @@
+---
+- name: Unmap from host and delete svc volume 
+  collections:
+    - ibm.spectrum_virtualize
+  gather_facts: no
+  connection: local
+  hosts: localhost
+  vars:
+    - svc_cluster_name: IBM-FS9100
+    - svc_user_name: jwilcock
+
+  vars_prompt:
+    - name: "svc_user_passwd"
+      prompt: "Enter password for {{ svc_user_name }} on SVC {{svc_cluster_name}}"
+      private: yes
+      confirm: no
+    - name: "svc_vol"
+      prompt: "Enter name of volume to delete"
+      private: yes
+      confirm: no
+    - name: "svc_client_name"
+      prompt: "Enter name of Spectrum Virtualize host from which to detach volume"
+      private: yes
+      confirm: no
+
+
+  tasks:
+    - name: Unmap svc volume
+      import_role:
+        name: unmap_svc_volume
+    - name: delete svc volume
+      import_role:
+        name: del_svc_volume
